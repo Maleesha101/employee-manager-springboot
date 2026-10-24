@@ -21,10 +21,12 @@ public class EmployeeController {
 
     // GET / and /employees - display form and employee table
     @GetMapping({"/", "/employees"})
-    public String listEmployees(Model model) {
+    public String listEmployees(
+            @RequestParam(required = false) String keyword, Model model) {
         model.addAttribute("employee", new Employee());
         model.addAttribute(
-                "employees", employeeService.getAllEmployees());
+                "employees", employeeService.searchEmployeesByName(keyword));
+        model.addAttribute("keyword", keyword == null ? "" : keyword);
         return "employees";
     }
 
@@ -39,6 +41,7 @@ public class EmployeeController {
         if (result.hasErrors()) {
             model.addAttribute(
                     "employees", employeeService.getAllEmployees());
+            model.addAttribute("keyword", "");
             return "employees";
         }
 

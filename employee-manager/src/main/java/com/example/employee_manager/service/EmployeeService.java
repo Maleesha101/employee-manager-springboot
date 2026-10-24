@@ -21,6 +21,13 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public List<Employee> searchEmployeesByName(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            return getAllEmployees();
+        }
+        return employeeRepository.findByNameContainingIgnoreCase(keyword.trim());
+    }
+
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id)
                 .orElseThrow(() ->
