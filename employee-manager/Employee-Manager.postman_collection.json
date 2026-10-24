@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "5ef88d47-0a97-4a93-a72d-5f84d9e8f790",
+    "name": "Employee Manager",
+    "description": "Requests for the Employee Manager Spring MVC application. These routes render HTML pages or redirect; they are form endpoints, not a JSON REST API. Set employeeId to an existing employee ID before using edit, update, or delete.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "employeeId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "List employees",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/employees",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "employees"
+          ]
+        },
+        "description": "Displays the employee list and create form."
+      },
+      "response": []
+    },
+    {
+      "name": "Create employee",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "Jordan Lee",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "jordan.lee@example.com",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "+1 555 123 4567",
+              "type": "text"
+            },
+            {
+              "key": "department",
+              "value": "Engineering",
+              "type": "text"
+            },
+            {
+              "key": "salary",
+              "value": "75000.00",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/employees",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "employees"
+          ]
+        },
+        "description": "Submits an employee form and redirects to the employee list."
+      },
+      "response": []
+    },
+    {
+      "name": "Show employee edit form",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/employees/{{employeeId}}/edit",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "employees",
+            "{{employeeId}}",
+            "edit"
+          ]
+        },
+        "description": "Displays the edit form for the employeeId collection variable."
+      },
+      "response": []
+    },
+    {
+      "name": "Update employee",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "Jordan Lee",
+              "type": "text"
+            },
+            {
+              "key": "email",
+              "value": "jordan.lee@example.com",
+              "type": "text"
+            },
+            {
+              "key": "phone",
+              "value": "+1 555 123 4567",
+              "type": "text"
+            },
+            {
+              "key": "department",
+              "value": "Engineering",
+              "type": "text"
+            },
+            {
+              "key": "salary",
+              "value": "80000.00",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/employees/{{employeeId}}/update",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "employees",
+            "{{employeeId}}",
+            "update"
+          ]
+        },
+        "description": "Submits updated form fields and redirects to the employee list."
+      },
+      "response": []
+    },
+    {
+      "name": "Delete employee",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/employees/{{employeeId}}/delete",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "employees",
+            "{{employeeId}}",
+            "delete"
+          ]
+        },
+        "description": "Deletes the employeeId collection variable and redirects to the employee list."
+      },
+      "response": []
+    }
+  ]
+}
