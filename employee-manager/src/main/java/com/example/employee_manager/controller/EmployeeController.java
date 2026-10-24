@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -20,8 +19,8 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    // GET /employees - display form and employee table
-    @GetMapping
+    // GET / and /employees - display form and employee table
+    @GetMapping({"/", "/employees"})
     public String listEmployees(Model model) {
         model.addAttribute("employee", new Employee());
         model.addAttribute(
@@ -30,7 +29,7 @@ public class EmployeeController {
     }
 
     // POST /employees - save a new employee
-    @PostMapping
+    @PostMapping("/employees")
     public String saveEmployee(
             @Valid @ModelAttribute("employee") Employee employee,
             BindingResult result,
@@ -51,7 +50,7 @@ public class EmployeeController {
     }
 
     // GET /employees/{id}/edit - show employee details in edit form
-    @GetMapping("/{id}/edit")
+    @GetMapping("/employees/{id}/edit")
     public String editEmployee(
             @PathVariable Long id, Model model) {
 
@@ -61,7 +60,7 @@ public class EmployeeController {
     }
 
     // POST /employees/{id}/update - update employee
-    @PostMapping("/{id}/update")
+    @PostMapping("/employees/{id}/update")
     public String updateEmployee(
             @PathVariable Long id,
             @Valid @ModelAttribute("employee") Employee employee,
@@ -84,7 +83,7 @@ public class EmployeeController {
     }
 
     // POST /employees/{id}/delete - delete employee
-    @PostMapping("/{id}/delete")
+    @PostMapping("/employees/{id}/delete")
     public String deleteEmployee(
             @PathVariable Long id,
             RedirectAttributes redirectAttributes) {
